@@ -7,9 +7,9 @@ public class Conteudo{
     private ArrayList<Review> reviews;
     private Duration duracao;
 
-    public Conteudo(String nome, float nota, Duration duracao){
+    public Conteudo(String nome, Duration duracao){
         this.nome = nome;
-        this.nota = nota;
+        this.nota = 0;
         this.duracao = duracao;
         this.reviews = new ArrayList<Review>();
     }
