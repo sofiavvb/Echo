@@ -9,8 +9,8 @@ public class Conteudo{
 
     public Conteudo(String nome, Duration duracao){
         this.nome = nome;
-        this.nota = 0;
         this.duracao = duracao;
+        this.nota = 0;
         this.reviews = new ArrayList<Review>();
     }
 
@@ -51,7 +51,7 @@ public class Conteudo{
     
     public void removeReview(Review review){
         //atualiza a nota media do conteudo
-        this.setNota((this.nota - review.getNota()) / this.reviews.size());
+        this.setNota((this.nota - review.getNota()) / (this.reviews.size()-1));
         //remove a review da lista de reviews do conteudo
         this.reviews.remove(review);
     }
