@@ -9,7 +9,6 @@ public class Musica extends Conteudo{
     private ArrayList<Artista> produtores;
     private ArrayList<Artista> instrumentistas;
     private Album album;
-    private int reviews;
     private int ano;
 
     public Musica(String nome, Duration duracao, int faixa, Album album, int ano){
@@ -21,7 +20,6 @@ public class Musica extends Conteudo{
         this.produtores = new ArrayList<Artista>();
         this.instrumentistas = new ArrayList<Artista>();
         this.album = album;
-        this.reviews = 0;
         this.ano = ano;
     }
 
@@ -61,14 +59,6 @@ public class Musica extends Conteudo{
         this.album = album;
     }
 
-    public int getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(int reviews) {
-        this.reviews = reviews;
-    }
-
     public int getAno() {
         return ano;
     }
@@ -96,7 +86,4 @@ public class Musica extends Conteudo{
     public void addInstrumentista(Artista artista){
         this.instrumentistas.add(artista);
     }
-
-    //faz sentido ter metodo para retirar artista?
-
 }
