@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public abstract class Artista {
+public class Artista {
    private String nome;
    private String foto;
    private ArrayList<Album> discografia;
@@ -46,6 +46,8 @@ public abstract class Artista {
        return this.discografia.add(album);
    }
 
-   public abstract void publicarConteudo();
+   public void publicarConteudo(){
+         //TODO
+   }
 
 }
