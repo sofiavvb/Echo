@@ -2,34 +2,26 @@ import java.util.ArrayList;
 import java.time.Duration;
 
 public class Album extends Conteudo {
-    // Atributos
-    String nome;
-    Duration duracao;
-    Enum genero;
-    ArrayList<Artista> artistaPrincipal;
-    ArrayList<Musica> musicas;
-    float nota;
-    int ano;
-    Gravadora gravadora;
-    ArrayList<Review> reviews;
+    private Genero genero;  
+    private ArrayList<Artista> artistaPrincipal;
+    private ArrayList<Musica> musicas;
+    private int ano;
+    private Gravadora gravadora;
 
-    // Getters e Setters
-    public String getNome() {
-        return nome;
+    public Album(String nome, Duration duracao, Genero genero, int ano, Gravadora gravadora) {
+        super(nome, duracao);
+        this.genero = genero;
+        this.artistaPrincipal = new ArrayList<Artista>();
+        this.musicas = new ArrayList<Musica>();
+        this.ano = ano;
+        this.gravadora = gravadora;
+        this.gravadora.addAlbum(this);
     }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    public TimeInterval getDuracao() {
-        return duracao;
-    }
-    public void setDuracao(TimeInterval duracao) {
-        this.duracao = duracao;
-    }
-    public Enum getGenero() {
+
+    public Genero getGenero() {
         return genero;
     }
-    public void setGenero(Enum genero) {
+    public void setGenero(Genero genero) {
         this.genero = genero;
     }
     public ArrayList<Artista> getArtistaPrincipal() {
@@ -44,12 +36,24 @@ public class Album extends Conteudo {
     public void setMusicas(ArrayList<Musica> musicas) {
         this.musicas = musicas;
     }
-    public float getNota() {
-        return nota;
+
+    public void addMusica(Musica musica){
+        this.musicas.add(musica);
     }
-    public void setNota(float nota) {
-        this.nota = nota;
+
+    public void addArtista(Artista artista){
+        this.artistaPrincipal.add(artista);
     }
+
+    public Musica getMusicabyFaixa(int faixa){
+        for(Musica musica : this.musicas){
+            if(musica.getFaixa() == faixa){
+                return musica;
+            }
+        }
+        return null;
+    }
+
     public int getAno() {
         return ano;
     }
@@ -62,10 +66,4 @@ public class Album extends Conteudo {
     public void setGravadora(Gravadora gravadora) {
         this.gravadora = gravadora;
     }
-    public ArrayList<Review> getReviews() {
-        return reviews;
-    }
-    public void setReviews(ArrayList<Review> reviews) {
-        this.reviews = reviews;
-    }
-
+}

@@ -2,14 +2,63 @@ import java.util.ArrayList;
 
 public class Usuario {
     // Atributos
-    String nome;
-    String senha;
-    String cpf;
-    String email;
-    String foto;
-    ArrayList<Conteudo> biblioteca;
-    ArrayList<Review> reviews;
-    ArrayList<Usuario> amigos;
+    private String nome;
+    private String senha;
+    private String cpf;
+    private String email;
+    private String foto;
+    private ArrayList<Conteudo> biblioteca;
+    private ArrayList<Review> reviews;
+    private ArrayList<Usuario> amigos;
+
+    public Usuario() {
+        this.biblioteca = new ArrayList<Conteudo>();
+        this.reviews = new ArrayList<Review>();
+        this.amigos = new ArrayList<Usuario>();
+    }
+
+    public Usuario(String nome, String senha, String cpf, String email, String foto) {
+        this.nome = nome;
+        this.senha = senha;
+        this.cpf = cpf;
+        this.email = email;
+        this.foto = foto;
+        this.biblioteca = new ArrayList<Conteudo>();
+        this.reviews = new ArrayList<Review>();
+        this.amigos = new ArrayList<Usuario>();
+    }
+
+    public void publicarReviewMusica(Musica m) {
+        Review review = new ReviewMusica(this, m);
+        review.criarReview();
+        this.reviews.add(review);
+    }
+    
+    public void publicarReviewAlbum(Album a) {
+        Review review = new ReviewAlbum(this, a);
+        review.criarReview();
+        this.reviews.add(review);
+    }
+
+    public void curtirReview(Review review) {
+        review.setCurtidas(review.getCurtidas()+1);
+    }
+
+    public void addAmigo(Usuario amigo) {
+        this.amigos.add(amigo);
+    }
+
+    public void removeAmigo(Usuario amigo) {
+        this.amigos.remove(amigo);
+    }
+
+    public void addBiblioteca(Conteudo conteudo) {
+        this.biblioteca.add(conteudo);
+    }
+
+    public void removeBiblioteca(Conteudo conteudo) {
+        this.biblioteca.remove(conteudo);
+    }
 
     // Getter e Setter
     public String getNome() {
@@ -60,8 +109,5 @@ public class Usuario {
     public void setAmigos(ArrayList<Usuario> amigos) {
         this.amigos = amigos;
     }
-
-    // outros métodos
-
 
 }

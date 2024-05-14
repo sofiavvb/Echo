@@ -45,9 +45,4 @@ public class Artista {
    public boolean addAlbum(Album album){
        return this.discografia.add(album);
    }
-
-   public void publicarConteudo(){
-         //TODO
-   }
-
 }

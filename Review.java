@@ -1,7 +1,6 @@
 import java.time.LocalDate;
-import java.util.Scanner;
 
-public class Review {
+public abstract class Review {
     private Usuario usuario;
     private LocalDate data;
     private Conteudo conteudo;
@@ -18,17 +17,7 @@ public class Review {
         this.review = "";
     }
 
-    void publicarReview() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Quantas estrelas (de 1 a 5) esse conteúdo merece?");
-        this.nota = scanner.nextByte();
-
-        System.out.println("Qual sua opinião sobre: " + this.conteudo.getNome() + "?");
-        this.review = scanner.nextLine();
-
-        this.conteudo.addReview(this);
-    }
+    public abstract void criarReview();
 
     public Usuario getUsuario() {
         return usuario;
