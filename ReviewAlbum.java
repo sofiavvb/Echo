@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class ReviewAlbum extends Review{
+    private int coesao;
+
+    public ReviewAlbum(Usuario u, Conteudo c) {
+        super(u, c);
+        this.coesao = 0;
+    }
+
+    public int getCoesao() {
+        return coesao;
+    }
+
+    public void setCoesao(int coesao) {
+        this.coesao = coesao;
+    }
+
+    @Override
+    public void criarReview() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Quantas estrelas (de 1 a 5) esse álbum merece?");
+        super.setNota(scanner.nextByte());
+
+        System.out.println("Qual sua opinião sobre: " + super.getConteudo().getNome() + "?");
+        super.setReview(scanner.nextLine());
+
+        System.out.println("Qual a coesão desse álbum (de 1 a 5)?");
+        this.setCoesao(scanner.nextByte());
+
+        super.getConteudo().addReview(this);
+        do {
+            System.out.println("Você gostaria de avaliar músicas de " + super.getConteudo().getNome() + "? [s/n]");
+            String escolha = scanner.nextLine();
+
+            if (escolha.equals("s")){
+                System.out.println("Digite a faixa que quer avaliar:");
+                int faixa = scanner.nextInt();
+                this.getUsuario().publicarReviewMusica(((Album) super.getConteudo()).getMusicabyFaixa(faixa));
+            } else{
+                System.out.println("Obrigado por avaliar!");
+                break;
+            }
+        } while (true);
+        scanner.close(); 
+    } 
+}
