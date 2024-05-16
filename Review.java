@@ -53,4 +53,11 @@ public abstract class Review {
     public LocalDate getData() {
         return data;
     }
+
+    @Override
+    public String toString() {
+        return "Review [usuario=" + usuario + ", data=" + data + ", conteudo=" + conteudo + ", review=" + review
+                + ", nota=" + nota + ", curtidas=" + curtidas + "]";
+    }
+
 }

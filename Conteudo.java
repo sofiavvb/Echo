@@ -55,4 +55,11 @@ public class Conteudo{
         //remove a review da lista de reviews do conteudo
         this.reviews.remove(review);
     }
+
+    @Override
+    public String toString() {
+        return "Conteudo [nome=" + nome + ", nota=" + nota + ", reviews=" + reviews + ", duracao=" + duracao + "]";
+    }
+
+    
 }

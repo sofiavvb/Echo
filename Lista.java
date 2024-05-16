@@ -62,4 +62,11 @@ public class Lista {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    @Override
+    public String toString() {
+        return "Lista [nome=" + nome + ", descricao=" + descricao + ", lista=" + lista + ", usuario=" + usuario
+                + ", curtidas=" + curtidas + "]";
+    }
+
 }

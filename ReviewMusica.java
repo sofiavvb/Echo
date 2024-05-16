@@ -21,4 +21,11 @@ public class ReviewMusica extends Review{
         System.out.println("Obrigado por avaliar!");
         scanner.close();
     }
+
+    @Override
+    public String toString() {
+        return "ReviewMusica []";
+    }
+
+    
 }

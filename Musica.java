@@ -32,4 +32,10 @@ public class Musica extends Conteudo{
     public void addArtistaPrincipal(Artista artista){
         this.artistaPrincipal.add(artista);
     }
+
+    @Override
+    public String toString() {
+        return "Musica [faixa=" + faixa + ", artistaPrincipal=" + artistaPrincipal + ", album=" + album + "]";
+    }
+
 }

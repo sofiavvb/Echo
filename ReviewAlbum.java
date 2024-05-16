@@ -44,5 +44,12 @@ public class ReviewAlbum extends Review{
             }
         } while (true);
         scanner.close(); 
+    }
+
+    @Override
+    public String toString() {
+        return "ReviewAlbum [coesao=" + coesao + "]";
     } 
+
+    
 }

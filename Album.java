@@ -66,4 +66,12 @@ public class Album extends Conteudo {
     public void setGravadora(Gravadora gravadora) {
         this.gravadora = gravadora;
     }
+
+    @Override
+    public String toString() {
+        return "Album [genero=" + genero + ", artistaPrincipal=" + artistaPrincipal + ", musicas=" + musicas + ", ano="
+                + ano + ", gravadora=" + gravadora + "]";
+    }
+
+    
 }

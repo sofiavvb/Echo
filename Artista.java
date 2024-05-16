@@ -45,4 +45,13 @@ public class Artista {
    public boolean addAlbum(Album album){
        return this.discografia.add(album);
    }
+
+    @Override
+    public String toString() {
+        return "Artista [nome=" + nome + ", foto=" + foto + ", discografia=" + discografia + ", singles=" + singles + "]";
+    }
+
+
+   
+   
 }

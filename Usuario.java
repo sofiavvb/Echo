@@ -110,4 +110,10 @@ public class Usuario {
         this.amigos = amigos;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario [nome=" + nome + ", senha=" + senha + ", cpf=" + cpf + ", email=" + email + ", foto=" + foto
+                + ", biblioteca=" + biblioteca + ", reviews=" + reviews + ", amigos=" + amigos + "]";
+    }
+
 }

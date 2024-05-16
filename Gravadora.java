@@ -39,4 +39,9 @@ public class Gravadora {
     public boolean removeArtista(Artista artista){
         return this.artistas.remove(artista);
     }
+
+    @Override
+    public String toString() {
+        return "Gravadora [nome=" + nome + ", artistas=" + artistas + ", albuns=" + albuns + "]";
+    }
 }
