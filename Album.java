@@ -54,6 +54,12 @@ public class Album extends Conteudo {
         return null;
     }
 
+    public void mostrarMusicas(){
+        for(Musica musica : this.musicas){
+            System.out.println(musica.getFaixa()+ "- " + musica.getNome());
+        }
+    }
+
     public int getAno() {
         return ano;
     }

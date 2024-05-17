@@ -1,7 +1,5 @@
 import java.util.Scanner;
-
 import java.time.Duration;
-
 import java.util.ArrayList;
 
 public class Application {
@@ -26,8 +24,21 @@ public class Application {
 
         System.out.println("Olá, " + usuario.getNome() + "!");
         System.out.println("Esses são os álbuns disponíveis no Echo:");
-        for (Album album : albuns){
-            System.out.println(album.getNome());
+        mostrarAlbuns(albuns);
+
+        //Fazer review de um album, por enquanto so temos 1 cadastrado na plataforma
+        System.out.println(usuario.getNome() + ", gostaria de fazer uma review de algum álbum?\n1-Sim\n2-Não");
+        int escolha = Integer.parseInt(scanner.nextLine());
+        //Obter o album que o usuario quer fazer a review
+        if (escolha == 1){
+            System.out.println("*****Qual álbum você gostaria de avaliar?*****");
+            mostrarAlbuns(albuns);
+            String albumEscolhido = scanner.nextLine();
+            for (Album album : albuns){
+                if (album.getNome().equals(albumEscolhido)){
+                    usuario.publicarReviewAlbum(album);
+                }
+            }
         }
         scanner.close();
     }
@@ -53,5 +64,11 @@ public class Application {
         ttpd.addMusica(new Musica("loml", Duration.ofMinutes(3).plusSeconds(12), 12, ttpd));
         ttpd.addMusica(new Musica("I Can Do It With a Broken Heart", Duration.ofMinutes(3).plusSeconds(12), 13, ttpd));
         a.add(ttpd);
+    }
+
+    public static void mostrarAlbuns(ArrayList<Album> albuns){
+        for (Album album : albuns){
+            System.out.println("-" + album.getNome());
+        }
     }
 }

@@ -21,13 +21,13 @@ public class ReviewAlbum extends Review{
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Quantas estrelas (de 1 a 5) esse álbum merece?");
-        super.setNota(scanner.nextByte());
+        super.setNota(Integer.parseInt(scanner.nextLine()));
 
         System.out.println("Qual sua opinião sobre: " + super.getConteudo().getNome() + "?");
         super.setReview(scanner.nextLine());
 
         System.out.println("Qual a coesão desse álbum (de 1 a 5)?");
-        this.setCoesao(scanner.nextByte());
+        this.setCoesao(Integer.parseInt(scanner.nextLine()));
 
         super.getConteudo().addReview(this);
         do {
@@ -35,15 +35,16 @@ public class ReviewAlbum extends Review{
             String escolha = scanner.nextLine();
 
             if (escolha.equals("s")){
-                System.out.println("Digite a faixa que quer avaliar:");
-                int faixa = scanner.nextInt();
+                System.out.println("*****Digite a faixa(número) que quer avaliar:*****");
+                //mostrar musicas do album para o usuario
+                ((Album) super.getConteudo()).mostrarMusicas();
+                int faixa = Integer.parseInt(scanner.nextLine());
                 this.getUsuario().publicarReviewMusica(((Album) super.getConteudo()).getMusicabyFaixa(faixa));
             } else{
                 System.out.println("Obrigado por avaliar!");
                 break;
             }
         } while (true);
-        scanner.close(); 
     }
 
     @Override
