@@ -51,6 +51,4 @@ public class ReviewAlbum extends Review{
     public String toString() {
         return "ReviewAlbum [coesao=" + coesao + "]";
     } 
-
-    
 }
