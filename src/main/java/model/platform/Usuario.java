@@ -56,9 +56,9 @@ public class Usuario {
     public void addAmigo(Usuario amigo) {
         this.amigos.add(amigo);
     }
-
-    public void publicarLista(Lista l) {
-        l.setUsuario(this);
+    
+    public void publicarLista() {
+        Lista l = new Lista(this);
         l.criarLista();
         this.listas.add(l);
     }
