@@ -13,6 +13,10 @@ public class Gravadora {
         this.albuns = new ArrayList<Album>();
     }
 
+    public static double popularidade(Conteudo c) {
+        return c.getNota() / c.getReviews().size();
+    }
+
     public ArrayList<Album> getAlbuns(){
         return this.albuns;
     }
