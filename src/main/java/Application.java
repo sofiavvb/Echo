@@ -1,4 +1,13 @@
+package src.main.java;
 import java.util.Scanner;
+
+import src.main.java.model.content.Album;
+import src.main.java.model.content.Artista;
+import src.main.java.model.content.Gravadora;
+import src.main.java.model.content.Musica;
+import src.main.java.model.platform.Usuario;
+import src.main.resources.Genero;
+
 import java.time.Duration;
 import java.util.ArrayList;
 

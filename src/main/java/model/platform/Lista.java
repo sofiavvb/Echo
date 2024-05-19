@@ -1,4 +1,7 @@
+package src.main.java.model.platform;
+
 import java.util.ArrayList;
+import src.main.java.model.content.Conteudo;
 
 public class Lista {
     private String nome;

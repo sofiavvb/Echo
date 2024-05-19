@@ -1,8 +1,11 @@
-import java.util.ArrayList;
+package src.main.java.model.content;
+
 import java.time.Duration;
+import java.util.ArrayList;
+import src.main.resources.Genero;
 
 public class Album extends Conteudo {
-    private Genero genero;  
+    private Genero genero;
     private ArrayList<Artista> artistaPrincipal;
     private ArrayList<Musica> musicas;
     private int ano;

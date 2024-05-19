@@ -1,3 +1,7 @@
+package src.main.java.model.platform;
+
+import src.main.java.model.content.Conteudo;
+import src.main.java.model.content.Album;
 import java.util.Scanner;
 
 public class ReviewAlbum extends Review{

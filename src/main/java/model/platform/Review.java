@@ -1,3 +1,6 @@
+package src.main.java.model.platform;
+
+import src.main.java.model.content.Conteudo;
 import java.time.LocalDate;
 
 public abstract class Review {

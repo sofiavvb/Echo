@@ -1,3 +1,9 @@
+package src.main.java.model.platform;
+
+import src.main.java.model.content.Album;
+import src.main.java.model.content.Conteudo;
+import src.main.java.model.content.Musica;
+
 import java.util.ArrayList;
 
 public class Usuario {

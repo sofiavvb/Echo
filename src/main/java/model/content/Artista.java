@@ -1,3 +1,4 @@
+package src.main.java.model.content;
 import java.util.ArrayList;
 
 public class Artista {
