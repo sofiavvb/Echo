@@ -6,15 +6,13 @@ import src.main.resources.Genero;
 
 public class Album extends Conteudo {
     private Genero genero;
-    private ArrayList<Artista> artistaPrincipal;
     private ArrayList<Musica> musicas;
     private int ano;
     private Gravadora gravadora;
 
     public Album(String nome, Duration duracao, Genero genero, int ano, Gravadora gravadora) {
-        super(nome, duracao);
+        super(nome, duracao, new ArrayList<Artista>());
         this.genero = genero;
-        this.artistaPrincipal = new ArrayList<Artista>();
         this.musicas = new ArrayList<Musica>();
         this.ano = ano;
         this.gravadora = gravadora;
@@ -27,12 +25,7 @@ public class Album extends Conteudo {
     public void setGenero(Genero genero) {
         this.genero = genero;
     }
-    public ArrayList<Artista> getArtistaPrincipal() {
-        return artistaPrincipal;
-    }
-    public void setArtistaPrincipal(ArrayList<Artista> artistaPrincipal) {
-        this.artistaPrincipal = artistaPrincipal;
-    }
+
     public ArrayList<Musica> getMusicas() {
         return musicas;
     }
@@ -42,10 +35,6 @@ public class Album extends Conteudo {
 
     public void addMusica(Musica musica){
         this.musicas.add(musica);
-    }
-
-    public void addArtista(Artista artista){
-        this.artistaPrincipal.add(artista);
     }
 
     public Musica getMusicabyFaixa(int faixa){
@@ -78,7 +67,7 @@ public class Album extends Conteudo {
 
     @Override
     public String toString() {
-        return "Album [genero=" + genero + ", artistaPrincipal=" + artistaPrincipal + ", musicas=" + musicas + ", ano="
+        return "Album [genero=" + genero + ", artistaPrincipal=" + super.getArtistaPrincipal() + ", musicas=" + musicas + ", ano="
                 + ano + ", gravadora=" + gravadora + "]";
     }
 

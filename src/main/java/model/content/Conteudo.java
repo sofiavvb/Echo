@@ -8,11 +8,13 @@ public class Conteudo{
     private String nome;
     private float nota;
     private ArrayList<Review> reviews;
+    private ArrayList<Artista> artistaPrincipal;
     private Duration duracao;
 
-    public Conteudo(String nome, Duration duracao){
+    public Conteudo(String nome, Duration duracao, ArrayList<Artista> artista){
         this.nome = nome;
         this.duracao = duracao;
+        this.artistaPrincipal = artista;
         this.nota = 0;
         this.reviews = new ArrayList<Review>();
     }
@@ -23,6 +25,18 @@ public class Conteudo{
 
     public void setNome(String nome){
         this.nome = nome;
+    }
+
+    public ArrayList<Artista> getArtistaPrincipal() {
+        return artistaPrincipal;
+    }
+
+    public void setArtistaPrincipal(ArrayList<Artista> artistaPrincipal) {
+        this.artistaPrincipal = artistaPrincipal;
+    }
+
+    public void addArtistaPrincipal(Artista a){
+        this.artistaPrincipal.add(a);
     }
 
     public float getNota() {

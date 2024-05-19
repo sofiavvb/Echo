@@ -9,7 +9,7 @@ public class Musica extends Conteudo{
     private Album album;
 
     public Musica(String nome, Duration duracao, int faixa, Album album){
-        super(nome, duracao);
+        super(nome, duracao, album.getArtistaPrincipal());
         this.faixa = faixa;
         this.artistaPrincipal = new ArrayList<Artista>();
         this.album = album;
@@ -29,10 +29,6 @@ public class Musica extends Conteudo{
 
     public void setAlbum(Album album) {
         this.album = album;
-    }
-
-    public void addArtistaPrincipal(Artista artista){
-        this.artistaPrincipal.add(artista);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package src.main.java.model.platform;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import src.main.java.model.content.Conteudo;
 
 public class Lista {
@@ -10,20 +12,31 @@ public class Lista {
     private Usuario usuario;
     private int curtidas;
 
-    public Lista(Usuario usuario, String nome, String descricao) {
+    public Lista(Usuario usuario) {
         this.usuario = usuario;
-        this.nome = nome;
-        this.descricao = descricao;
         this.lista = new ArrayList<Conteudo>();
         this.curtidas = 0;
     }
 
-    public void adicionarConteudo(Conteudo conteudo) {
-        this.lista.add(conteudo);
+    public void criarLista() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Qual será o nome da sua lista?");
+        this.setNome(scanner.nextLine());
+        System.out.println("Insira uma breve descrição dela:");
+        this.setDescricao(scanner.nextLine());
+        System.out.println("Qual dos conteúdos disponíveis você gostaria de adicionar a sua lista?");
+        // aqui, devemos nas próximas versões mostrar os conteúdos disponíveis na plataforma e deixar o
+        // usuário escolher e adicionar
+        // this.adicionarConteudo(conteudoEscolhido);
+        scanner.close();
     }
 
-    public void removeConteudo(Conteudo conteudo) {
-        this.lista.remove(conteudo);
+    public void adicionarConteudo(Conteudo c) {
+        this.lista.add(c);
+    }
+
+    public void removeConteudo(Conteudo c) {
+        this.lista.remove(c);
     }
 
     public String getNome() {

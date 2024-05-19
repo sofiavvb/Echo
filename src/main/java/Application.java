@@ -40,7 +40,7 @@ public class Application {
         int escolha = Integer.parseInt(scanner.nextLine());
         //Obter o album que o usuario quer fazer a review
         if (escolha == 1){
-            System.out.println("*****Qual álbum você gostaria de avaliar?*****");
+            System.out.println("Qual álbum você gostaria de avaliar?");
             mostrarAlbuns(albuns);
             String albumEscolhido = scanner.nextLine();
             for (Album album : albuns){
@@ -58,7 +58,7 @@ public class Application {
         republicRecords.addArtista(taylorSwift);
 
         Album ttpd = new Album("THE TORTURED POETS DEPARTMENT: THE ANTHOLOGY", Duration.ofHours(2).plusMinutes(2), Genero.SYNTHPOP, 2024, republicRecords);
-        ttpd.addArtista(taylorSwift);
+        ttpd.addArtistaPrincipal(taylorSwift);
         ttpd.addMusica(new Musica("Fortnight (feat. Post Malone)", Duration.ofMinutes(3).plusSeconds(48), 1, ttpd));
         ttpd.addMusica(new Musica("The Tortured Poets Department", Duration.ofMinutes(4).plusSeconds(12), 2, ttpd));
         ttpd.addMusica(new Musica("My Boy Only Breaks His Favorite Toys", Duration.ofMinutes(3).plusSeconds(45), 3, ttpd));
@@ -77,7 +77,7 @@ public class Application {
 
     public static void mostrarAlbuns(ArrayList<Album> albuns){
         for (Album album : albuns){
-            System.out.println("-" + album.getNome());
+            System.out.println("- " + album.getNome());
         }
     }
 }

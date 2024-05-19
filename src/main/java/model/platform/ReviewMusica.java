@@ -23,6 +23,8 @@ public class ReviewMusica extends Review{
         super.getConteudo().addReview(this);
         
         System.out.println("Obrigado por avaliar!");
+
+        scanner.close();
     }
 
     @Override

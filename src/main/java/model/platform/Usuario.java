@@ -16,11 +16,13 @@ public class Usuario {
     private ArrayList<Conteudo> biblioteca;
     private ArrayList<Review> reviews;
     private ArrayList<Usuario> amigos;
+    private ArrayList<Lista> listas;
 
     public Usuario() {
         this.biblioteca = new ArrayList<Conteudo>();
         this.reviews = new ArrayList<Review>();
         this.amigos = new ArrayList<Usuario>();
+        this.listas = new ArrayList<Lista>();
     }
 
     public Usuario(String nome, String senha, String cpf, String email, String foto) {
@@ -32,6 +34,7 @@ public class Usuario {
         this.biblioteca = new ArrayList<Conteudo>();
         this.reviews = new ArrayList<Review>();
         this.amigos = new ArrayList<Usuario>();
+        this.listas = new ArrayList<Lista>();
     }
 
     public void publicarReviewMusica(Musica m) {
@@ -52,6 +55,12 @@ public class Usuario {
 
     public void addAmigo(Usuario amigo) {
         this.amigos.add(amigo);
+    }
+
+    public void publicarLista(Lista l) {
+        l.setUsuario(this);
+        l.criarLista();
+        this.listas.add(l);
     }
 
     public void removeAmigo(Usuario amigo) {
@@ -114,6 +123,14 @@ public class Usuario {
     }
     public void setAmigos(ArrayList<Usuario> amigos) {
         this.amigos = amigos;
+    }
+
+    public ArrayList<Lista> getListas() {
+        return listas;
+    }
+
+    public void setListas(ArrayList<Lista> listas) {
+        this.listas = listas;
     }
 
     @Override
