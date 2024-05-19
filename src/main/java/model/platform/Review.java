@@ -59,5 +59,4 @@ public abstract class Review {
         return "Review [usuario=" + usuario + ", data=" + data + ", conteudo=" + conteudo + ", review=" + review
                 + ", nota=" + nota + ", curtidas=" + curtidas + "]";
     }
-
 }

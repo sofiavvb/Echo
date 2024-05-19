@@ -79,5 +79,4 @@ public class Album extends Conteudo {
                 + ano + ", gravadora=" + gravadora + "]";
     }
 
-    
 }

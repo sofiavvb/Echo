@@ -11,11 +11,11 @@ public class Gravadora {
         this.albuns = new ArrayList<Album>();
     }
 
-    public ArrayList<Album> getAlbum(){
+    public ArrayList<Album> getAlbuns(){
         return this.albuns;
     }
 
-    public ArrayList<Artista> getArtista(){
+    public ArrayList<Artista> getArtistas(){
         return this.artistas;
     }
 

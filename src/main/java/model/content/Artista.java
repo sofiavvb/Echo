@@ -50,8 +50,4 @@ public class Artista {
     public String toString() {
         return "Artista [nome=" + nome + ", foto=" + foto + ", discografia=" + discografia + ", singles=" + singles + "]";
     }
-
-
-   
-   
 }

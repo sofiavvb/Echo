@@ -60,6 +60,4 @@ public class Conteudo{
     public String toString() {
         return "Conteudo [nome=" + nome + ", nota=" + nota + ", reviews=" + reviews + ", duracao=" + duracao + "]";
     }
-
-    
 }

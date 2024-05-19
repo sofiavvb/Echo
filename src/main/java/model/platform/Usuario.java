@@ -115,5 +115,4 @@ public class Usuario {
         return "Usuario [nome=" + nome + ", senha=" + senha + ", cpf=" + cpf + ", email=" + email + ", foto=" + foto
                 + ", biblioteca=" + biblioteca + ", reviews=" + reviews + ", amigos=" + amigos + "]";
     }
-
 }
