@@ -8,11 +8,13 @@ import src.main.java.model.content.Musica;
 import src.main.java.model.platform.Usuario;
 import src.main.resources.Genero;
 
+
 import java.time.Duration;
 import java.util.ArrayList;
 
 public class Application {
-    public static void main(String[] args) {
+    public static void main(String[] args){
+
         //albuns disponiveis na v0 do Echo
         ArrayList<Album> albuns = new ArrayList<Album>();
         addAlbunsEcho(albuns);
