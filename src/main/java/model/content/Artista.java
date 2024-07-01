@@ -6,7 +6,7 @@ public class Artista {
    private String foto;
    private ArrayList<Album> discografia;
    private ArrayList<Musica> singles;
-
+    
 
    public Artista(String nome, String foto){
        this.nome = nome;
