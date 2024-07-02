@@ -1,4 +1,4 @@
-package src.main.java.model.content;
+package model.content;
 
 import java.time.Duration;
 import java.util.ArrayList;

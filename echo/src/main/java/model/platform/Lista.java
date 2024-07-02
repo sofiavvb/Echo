@@ -1,4 +1,4 @@
-package src.main.java.model.platform;
+package model.platform;
 
 import java.util.ArrayList;
 import java.util.Scanner;

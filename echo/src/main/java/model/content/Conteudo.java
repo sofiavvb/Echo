@@ -1,8 +1,8 @@
-package src.main.java.model.content;
+package model.content;
 
 import java.util.ArrayList;
 import java.time.Duration;
-import src.main.java.model.platform.Review;
+import model.platform.Review;
 
 public class Conteudo{
     private String nome;
