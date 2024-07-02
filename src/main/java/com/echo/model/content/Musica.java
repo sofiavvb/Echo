@@ -1,9 +1,9 @@
-package model.content;
+package com.echo.model.content;
 
 import java.util.ArrayList;
 import java.time.Duration;
 
-public class Musica extends Conteudo{
+public class Musica extends Conteudo {
     private int faixa;
     private ArrayList<Artista> artistaPrincipal;
     private Album album;

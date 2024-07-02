@@ -1,8 +1,9 @@
-package model.content;
+package com.echo.model.content;
 
 import java.util.ArrayList;
 import java.time.Duration;
-import model.platform.Review;
+
+import com.echo.model.platform.Review;
 
 public class Conteudo{
     private String nome;

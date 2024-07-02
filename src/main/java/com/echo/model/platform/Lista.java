@@ -1,9 +1,9 @@
-package model.platform;
+package com.echo.model.platform;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import src.main.java.model.content.Conteudo;
+import com.echo.model.content.Conteudo;
 
 public class Lista {
     private String nome;

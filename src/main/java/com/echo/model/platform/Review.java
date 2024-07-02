@@ -1,6 +1,6 @@
-package model.platform;
+package com.echo.model.platform;
 
-import src.main.java.model.content.Conteudo;
+import com.echo.model.content.Conteudo;
 import java.time.LocalDate;
 
 public abstract class Review {

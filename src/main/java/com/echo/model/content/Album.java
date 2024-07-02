@@ -1,8 +1,7 @@
-package model.content;
+package com.echo.model.content;
 
 import java.time.Duration;
 import java.util.ArrayList;
-import src.main.resources.Genero;
 
 public class Album extends Conteudo {
     private Genero genero;

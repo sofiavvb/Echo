@@ -1,8 +1,8 @@
-package model.platform;
+package com.echo.model.platform;
 
-import src.main.java.model.content.Album;
-import src.main.java.model.content.Conteudo;
-import src.main.java.model.content.Musica;
+import com.echo.model.content.Album;
+import com.echo.model.content.Conteudo;
+import com.echo.model.content.Musica;
 
 import java.util.ArrayList;
 

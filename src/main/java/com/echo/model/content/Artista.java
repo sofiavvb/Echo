@@ -1,4 +1,4 @@
-package model.content;
+package com.echo.model.content;
 import java.util.ArrayList;
 
 public class Artista {
