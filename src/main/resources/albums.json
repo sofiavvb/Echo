@@ -1,0 +1,82 @@
+{
+    "albums": [
+        {
+            "name": "THE TORTURED POETS DEPARTMENT THE ANTHOLOGY",
+            "coverLink": "https://i.scdn.co/image/ab67616d0000b2738ecc33f195df6aa257c39eaa",
+            "year": 2024,
+            "label": "Universal Republic Records",
+            "genre": "SYNTHPOP"
+        },
+        {
+            "name": "1989 (Taylor's Version) [Deluxe]",
+            "coverLink": "https://i.scdn.co/image/ab67616d0000b273dc2bacae1dca83d26e2b1949",
+            "year": 2023,
+            "label": "Universal Republic Records",
+            "genre": "POP"
+        },
+        {
+            "name": "Speak Now (Taylor's Version)",
+            "coverLink": "https://m.media-amazon.com/images/I/71QgmF3cnEL._AC_UF894,1000_QL80_.jpg",
+            "year": 2023,
+            "label": "Universal Republic Records",
+            "genre": "COUNTRY"
+        },
+        {
+            "name": "Midnights (The Til Dawn Edition)",
+            "coverLink": "https://i.scdn.co/image/ab67616d0000b273fa747621a53c8e2cc436dee0",
+            "year": 2023,
+            "label": "Universal Republic Records",
+            "genre": "POP"
+        },
+        {
+            "name": "Red (Taylor's Version)",
+            "coverLink": "https://m.media-amazon.com/images/I/81OXINt3mVL._UF1000,1000_QL80_.jpg",
+            "year": 2021,
+            "label": "Universal Republic Records",
+            "genre": "POP"
+        },
+        {
+            "name": "Fearless (Taylor's Version)",
+            "coverLink": "https://m.media-amazon.com/images/I/91gSJNlk2pL._UF1000,1000_QL80_.jpg",
+            "year": 2021,
+            "label": "Universal Republic Records",
+            "genre": "COUNTRY"
+
+        },
+        {
+            "name": "evermore (deluxe version)",
+            "coverLink": "https://i.scdn.co/image/ab67616d0000b27390fd9741e1838115cd90b3b6",
+            "year": 2020,
+            "label": "Universal Republic Records",
+            "genre": "FOLK"
+        },
+        {
+            "name": "folklore (deluxe version)",
+            "coverLink": "https://m.media-amazon.com/images/I/81Hv+aaR53S._UF1000,1000_QL80_.jpg",
+            "year": 2020,
+            "label": "Universal Republic Records",
+            "genre": "FOLK"
+        },
+        {
+            "name": "Lover",
+            "coverLink": "https://m.media-amazon.com/images/I/71RfNE3rIyL._UF1000,1000_QL80_.jpg",
+            "year": 2019,
+            "label": "Universal Republic Records",
+            "genre": "POP"
+        },
+        {
+            "name": "reputation",
+            "coverLink": "https://upload.wikimedia.org/wikipedia/pt/f/f2/Taylor_Swift_-_Reputation.png",
+            "year": 2017,
+            "label": "Big Machine Records",
+            "genre": "POP"
+        },
+        {
+            "name": "Taylor Swift (Deluxe)",
+            "coverLink": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/6d/85/17/6d8517ee-a397-7f87-314a-1792fe748bc1/00602517874695.rgb.jpg/1200x1200bf-60.jpg",
+            "year": 2006,
+            "label": "Big Machine Records",
+            "genre": "COUNTRY"
+        }
+    ]
+}
