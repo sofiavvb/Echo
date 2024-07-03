@@ -1,104 +1,235 @@
 package com.echo.graphics;
 
 import javax.swing.*;
+import com.echo.model.platform.Usuario;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
 public class PaginaUsuario extends JFrame {
-    public PaginaUsuario() {
-        // Configuração da janela
-        setTitle("Echo - Página do Usuário");
-        setSize(400, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
- 
-        initComponents();
+    private Usuario usuario;
 
+    public PaginaUsuario(Usuario usuario) {
+        this.usuario = usuario;
+        initUI();
     }
 
-    public void initComponents() {
-        JPanel panel = new JPanel(new GridBagLayout());
+    public void initUI() {
+        setTitle("Echo - User Page");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
+        getContentPane().setBackground(Color.BLACK);
+        setLayout(new BorderLayout());
 
-        // Adição de componentes
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(50, 50, 50, 50);
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
+        setJMenuBar(createMenuBar());
+        add(createPainelCabecalho(), BorderLayout.NORTH);
+        add(createPainelCentral(), BorderLayout.CENTER);
 
-        // Label 1
-        JLabel label1 = new JLabel("Página do usuário");
-        panel.add(label1, gbc);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
 
-        // Foto de perfil
-         try {
-            BufferedImage originalImage = ImageIO.read(new File("fotoGato.jpg"));
-            JLabel imageLabel = new JLabel(new ImageIcon(getCircularImage(originalImage)));
-            gbc.gridy = 1;
-            gbc.gridwidth = 1;
-            panel.add(imageLabel, gbc);
+    private JMenuBar createMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menuArquivo = new JMenu("Menu");
 
-            // Adicionar o nome ao lado da imagem
-            JLabel nameLabel = new JLabel("Gato com oculos");
-            gbc.gridx = 1; // Coluna 1
-            gbc.gridy = 1; // Linha 0
-            gbc.anchor = GridBagConstraints.WEST; // Alinhar à esquerda
-            panel.add(nameLabel, gbc);
+        JMenuItem itemFeed = new JMenuItem("Feed");
+        JMenuItem itemSettings = new JMenuItem("Settings");
+        JMenuItem itemLogOut = new JMenuItem("Log out");
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        itemLogOut.addActionListener(e -> System.exit(0));
+
+        menuArquivo.add(itemFeed);
+        menuArquivo.add(itemSettings);
+        menuArquivo.addSeparator();
+        menuArquivo.add(itemLogOut);
+        menuBar.add(menuArquivo);
+
+        // Alterando a fonte da barra de menu
+        Font menuFont = new Font("Serif", Font.PLAIN, 18);
+        menuArquivo.setFont(menuFont);
+        itemFeed.setFont(menuFont);
+        itemSettings.setFont(menuFont);
+        itemLogOut.setFont(menuFont);
+
+        return menuBar;
+    }
+
+    private JPanel createPainelCabecalho() {
+        JPanel painelCabecalho = new JPanel(new BorderLayout());
+        painelCabecalho.setBackground(Color.BLACK);
+
+        // Logo no canto superior esquerdo
+        painelCabecalho.add(createPainelLogo(), BorderLayout.WEST);
+
+        // Ícones de redes sociais no centro superior
+        painelCabecalho.add(createPainelRedesSociais(), BorderLayout.CENTER);
+
+        // Barra de pesquisa no canto superior direito
+        painelCabecalho.add(createBarraDePesquisa(), BorderLayout.EAST);
+
+        return painelCabecalho;
+    }
+
+    private JPanel createPainelLogo() {
+        JPanel painelLogo = new JPanel();
+        painelLogo.setBackground(Color.BLACK);
+
+        JLabel logo = createLogo();
+        painelLogo.add(logo);
+
+        return painelLogo;
+    }
+
+    private JPanel createPainelRedesSociais() {
+        JPanel painelRedesSociais = new JPanel();
+        painelRedesSociais.setBackground(Color.BLACK);
+        painelRedesSociais.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+
+        // Adicionar ícones de redes sociais
+        for (int i = 1; i <= 3; i++) {
+            ImageIcon icon = new ImageIcon("caminho/para/redeSocial" + i + ".png");
+            JButton botaoRedeSocial = new JButton(icon);
+            botaoRedeSocial.setPreferredSize(new Dimension(30, 30));
+            painelRedesSociais.add(botaoRedeSocial);
         }
 
-        // Albuns favoritos
-        JLabel label2 = new JLabel("Albuns Favoritos");
-        gbc.gridx = 0;
-        gbc.gridy = 6;
-        panel.add(label2, gbc);
-
-
-        // Albuns avaliados
-        JLabel label3 = new JLabel("Biblioteca");
-        gbc.gridx = 0;
-        gbc.gridy = 8;
-        panel.add(label3, gbc);
-
-
-        add(panel);
-
-
+        return painelRedesSociais;
     }
 
-    private BufferedImage getCircularImage(BufferedImage originalImage) {
-        int diameter = Math.min(originalImage.getWidth(), originalImage.getHeight()) / 2;
-        BufferedImage mask = new BufferedImage(diameter, diameter, BufferedImage.TYPE_INT_ARGB);
+    private JPanel createBarraDePesquisa() {
+        JPanel painelPesquisa = new JPanel();
+        painelPesquisa.setBackground(Color.BLACK);
 
-        Graphics2D g2d = mask.createGraphics();
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.fillOval(0, 0, diameter, diameter);
-        g2d.dispose();
+        JTextField barraPesquisa = new JTextField(20);
+        JButton botaoPesquisa = new JButton("Pesquisar");
 
-        BufferedImage circularImage = new BufferedImage(diameter, diameter, BufferedImage.TYPE_INT_ARGB);
-        g2d = circularImage.createGraphics();
-        g2d.setClip(new java.awt.geom.Ellipse2D.Float(0, 0, diameter, diameter));
-        int x = (diameter - originalImage.getWidth()) / 2;
-        int y = (diameter - originalImage.getHeight()) / 2;
-        g2d.drawImage(originalImage, x, y, null);
-        g2d.dispose();
+        painelPesquisa.add(barraPesquisa);
+        painelPesquisa.add(botaoPesquisa);
 
-        return circularImage;
+        return painelPesquisa;
     }
-    public static void main(String[] args) {
-        // Criação e exibição da janela
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new PaginaUsuario().setVisible(true);
-            }
-        });
 
+    private JPanel createPainelCentral() {
+        JPanel painelCentral = new JPanel();
+        painelCentral.setLayout(new BoxLayout(painelCentral, BoxLayout.Y_AXIS));
+        painelCentral.setBackground(Color.BLACK);
+
+        painelCentral.add(createMenuHorizontalSuperior());
+        painelCentral.add(createPainelImagemTitulo());
+        painelCentral.add(createMenuHorizontalInferior());
+        painelCentral.add(createBiblioteca());
+
+        return painelCentral;
     }
-    
+
+    private JPanel createMenuHorizontalSuperior() {
+        JPanel painelMenu = new JPanel();
+        painelMenu.setLayout(new FlowLayout(FlowLayout.CENTER));
+        painelMenu.setBackground(Color.BLACK);
+
+        // Adicionar itens ao menu
+        JButton botaoMenu1 = new JButton("Discover");
+        JButton botaoMenu2 = new JButton("Lists");
+        JButton botaoMenu3 = new JButton("Genres");
+        JButton botaoMenu4 = new JButton("News");
+        JButton botaoMenu5 = new JButton("Community");
+        painelMenu.add(botaoMenu1);
+        painelMenu.add(botaoMenu2);
+        painelMenu.add(botaoMenu3);
+        painelMenu.add(botaoMenu4);
+        painelMenu.add(botaoMenu5);
+
+        return painelMenu;
+    }
+
+    private JPanel createMenuHorizontalInferior() {
+        JPanel painelMenu = new JPanel();
+        painelMenu.setLayout(new FlowLayout(FlowLayout.CENTER));
+        painelMenu.setBackground(Color.BLACK);
+
+        // Adicionar itens ao menu
+        JButton botaoMenu1 = new JButton("Ratings");
+        JButton botaoMenu2 = new JButton("Reviews");
+        JButton botaoMenu3 = new JButton("Likes");
+        JButton botaoMenu4 = new JButton("Lists");
+        JButton botaoMenu5 = new JButton("Library");
+        painelMenu.add(botaoMenu1);
+        painelMenu.add(botaoMenu2);
+        painelMenu.add(botaoMenu3);
+        painelMenu.add(botaoMenu4);
+        painelMenu.add(botaoMenu5);
+
+        return painelMenu;
+    }
+
+    private JPanel createPainelImagemTitulo() {
+        JPanel painelImagemTitulo = new JPanel();
+        painelImagemTitulo.setLayout(new BoxLayout(painelImagemTitulo, BoxLayout.Y_AXIS));
+        painelImagemTitulo.setBackground(Color.BLACK);
+
+        JLabel labelImagem = createImagemPerfil();
+        JLabel labelTitulo = new JLabel(usuario.getNome());
+        labelTitulo.setForeground(Color.WHITE);
+
+        // Alterando a fonte do título do usuário
+        Font titleFont = new Font("Serif", Font.BOLD, 20);
+        labelTitulo.setFont(titleFont);
+        labelTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        painelImagemTitulo.add(labelImagem);
+        painelImagemTitulo.add(Box.createVerticalStrut(10));
+        painelImagemTitulo.add(labelTitulo);
+
+        return painelImagemTitulo;
+    }
+
+    private JLabel createImagemPerfil() {
+        ImageIcon imageIcon = new ImageIcon("src/main/resources/fotoGato.jpg");
+        Image image = imageIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        return new JLabel(new ImageIcon(image));
+    }
+
+    private JLabel createLogo() {
+        ImageIcon imageIcon = new ImageIcon("src/main/resources/logoEcho.jpg");
+        Image image = imageIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        return new JLabel(new ImageIcon(image));
+    }
+
+    private JPanel createBiblioteca() {
+        JPanel painelBiblioteca = new JPanel();
+        painelBiblioteca.setLayout(new BoxLayout(painelBiblioteca, BoxLayout.Y_AXIS));
+        painelBiblioteca.setBackground(Color.BLACK);
+
+        JLabel labelCentralTitulo = new JLabel("Library");
+        labelCentralTitulo.setForeground(Color.WHITE);
+        labelCentralTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // Alterando a fonte do título central
+        Font centralTitleFont = new Font("Serif", Font.BOLD, 22);
+        labelCentralTitulo.setFont(centralTitleFont);
+
+        painelBiblioteca.add(Box.createVerticalStrut(20));
+        painelBiblioteca.add(labelCentralTitulo);
+        painelBiblioteca.add(Box.createVerticalStrut(10));
+        painelBiblioteca.add(createPainelImagens());
+
+        return painelBiblioteca;
+    }
+
+    private JPanel createPainelImagens() {
+        JPanel painelImagens = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        painelImagens.setBackground(Color.BLACK);
+
+        for (int i = 1; i <= 3; i++) {
+            ImageIcon icon = new ImageIcon("caminho/para/imagem" + i + ".jpg");
+            JButton botaoImagem = new JButton(icon);
+            botaoImagem.setPreferredSize(new Dimension(100, 100));
+            painelImagens.add(botaoImagem);
+
+            int index = i; // Necessário para a lambda
+            botaoImagem.addActionListener(e -> JOptionPane.showMessageDialog(null, "Imagem " + index + " clicada!"));
+        }
+
+        return painelImagens;
+    }
+
 }

@@ -99,7 +99,11 @@ public class Cadastro extends JFrame {
             String senha = textField4.getText();
             String foto = textField5.getText();
             JOptionPane.showMessageDialog(Cadastro.this, "Informações Salvas!");
+            setVisible(false);
+
             Usuario usuario = new Usuario(nomeUsario, senha, cpf, email, foto);
+            PaginaUsuario paginaUsuario = new PaginaUsuario(usuario);
+            paginaUsuario.initUI();
 
         });
 
