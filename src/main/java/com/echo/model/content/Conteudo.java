@@ -37,11 +37,20 @@ public class Conteudo{
     }
 
     public ArrayList<Artista> getArtistaPrincipal() {
-        return artistaPrincipal;
+        return this.artistaPrincipal;
     }
 
     public void addArtistaPrincipal(Artista a){
         this.artistaPrincipal.add(a);
+    }
+
+    public boolean isArtistaPrincipal(String nome) {
+        for (Artista a : this.artistaPrincipal) {
+            if (a.getNome().equals(nome)) {
+                return true;
+            }
+        };
+        return false;
     }
 
     public float getNota() {
