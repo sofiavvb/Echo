@@ -21,14 +21,9 @@ public class ReviewMusica extends Review{
         super.setReview(scanner.nextLine());
 
         super.getConteudo().addReview(this);
-        
+        //salva a review em um arquivo
+        super.salvaReview();
         System.out.println("Obrigado por avaliar!");
-
         scanner.close();
-    }
-
-    @Override
-    public String toString() {
-        return "ReviewMusica []";
-    }   
+    }  
 }

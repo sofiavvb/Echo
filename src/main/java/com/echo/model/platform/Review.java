@@ -2,6 +2,9 @@ package com.echo.model.platform;
 
 import com.echo.model.content.Conteudo;
 import java.time.LocalDate;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public abstract class Review {
     private Usuario usuario;
@@ -57,9 +60,16 @@ public abstract class Review {
         return data;
     }
 
-    @Override
-    public String toString() {
-        return "Review [usuario=" + usuario + ", data=" + data + ", conteudo=" + conteudo + ", review=" + review
-                + ", nota=" + nota + ", curtidas=" + curtidas + "]";
-    }
+   public void salvaReview(){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/reviews/reviews.txt", true))) {
+            writer.write("----Review de " + this.conteudo.getNome() + " por " + this.usuario.getNome()+ "----\n");
+            writer.write("* Data: " + this.data + "\n");
+            writer.write("* Nota: " + this.nota + "\n");
+            writer.write(this.review + "\n");
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            System.err.println("Erro ao salvar review: " + e.getMessage());
+        }
+   }
 }

@@ -20,7 +20,5 @@ public class Application {
        } catch (IOException e) {
            e.printStackTrace();
        }
-
-
     }
 }
