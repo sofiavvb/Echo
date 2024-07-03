@@ -3,10 +3,12 @@ package com.echo.utils;
 import com.echo.model.content.Album;
 import com.echo.model.content.Artista;
 import com.echo.model.content.Gravadora;
+import com.echo.model.content.Musica;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
 
 public class JSONParser {
@@ -41,5 +43,26 @@ public class JSONParser {
         }));
         
         return albums;
+    }
+
+    public static void addTracksFromJson (JsonNode node, ArrayList<Album> albums) {
+        int i = 0;
+        for (JsonNode no : node) {
+            var album = albums.get(i);
+            no.get("items").forEach(track -> {
+                Musica m = new Musica(
+                        track.get("name").asText(),
+                        Duration.ofMillis(track.get("duration_ms").asLong()),
+                        track.get("disc_number").asInt(),
+                        album
+                );
+                track.get("artists").forEach(artist -> {
+                    Artista a = new Artista(artist.get("name").asText(), "");
+                    m.addArtista(a);
+                });
+                album.addMusica(m);
+            });
+            i++;
+        }
     }
 }   
