@@ -25,8 +25,8 @@ public class Gravadora {
         return this.artistas;
     }
 
-    public boolean addArtista(Artista artista){
-        return this.artistas.add(artista);
+    public void addArtista(ArrayList<Artista> artistas) {
+        this.artistas.addAll(artistas);
     }
 
     public boolean addAlbum(Album album){
@@ -44,11 +44,6 @@ public class Gravadora {
     //artistas saem de gravadoras, albuns não.
     public boolean removeArtista(Artista artista){
         return this.artistas.remove(artista);
-    }
-
-    @Override
-    public String toString() {
-        return "Gravadora [nome=" + nome + ", artistas=" + artistas + ", albuns=" + albuns + "]";
     }
 
     public boolean equals(String g) {

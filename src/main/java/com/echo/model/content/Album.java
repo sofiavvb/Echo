@@ -77,6 +77,7 @@ public class Album extends Conteudo {
     //adiciona a gravadora ao album e o album a gravadora
     public void setGravadora(Gravadora gravadora) {
         this.gravadora = gravadora;
+        this.gravadora.addArtista(this.getArtistaPrincipal());
         this.gravadora.addAlbum(this);
     }
     public String getLinkCapa() {
@@ -86,10 +87,5 @@ public class Album extends Conteudo {
         this.linkCapa = linkCapa;
     }
 
-    @Override
-    public String toString() {
-        return "Album [genero=" + genero + ", artistaPrincipal=" + super.getArtistaPrincipal() + ", musicas=" + musicas + ", ano="
-                + ano + ", gravadora=" + gravadora + "]";
-    }
 
 }

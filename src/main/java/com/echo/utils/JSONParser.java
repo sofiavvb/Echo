@@ -49,16 +49,25 @@ public class JSONParser {
         int i = 0;
         for (JsonNode no : node) {
             var album = albums.get(i);
+            // evitar criação de objetos duplicados para o mesmo artista
+            var artistas = new ArrayList<Artista>(album.getArtistaPrincipal());
             no.get("items").forEach(track -> {
                 Musica m = new Musica(
                         track.get("name").asText(),
                         Duration.ofMillis(track.get("duration_ms").asLong()),
-                        track.get("disc_number").asInt(),
+                        track.get("track_number").asInt(),
                         album
                 );
                 track.get("artists").forEach(artist -> {
-                    Artista a = new Artista(artist.get("name").asText(), "");
-                    m.addArtista(a);
+                    for (Artista artista : artistas) {
+                        if (artista.getNome().equals(artist.get("name").asText()))
+                            m.addArtistaPrincipal(artista);
+                    }
+                    if (!m.isArtistaPrincipal(artist.get("name").asText())) {
+                        var a = new Artista(artist.get("name").asText(), "");
+                        m.addArtistaPrincipal(a);
+                        artistas.add(a);
+                    }
                 });
                 album.addMusica(m);
             });
