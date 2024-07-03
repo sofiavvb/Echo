@@ -41,6 +41,7 @@ public class Album extends Conteudo {
 
     public void addMusica(Musica musica){
         this.musicas.add(musica);
+        this.setDuracao(this.getDuracao().plus(musica.getDuracao()));
     }
     //adiciona o artista no album e
     //o album a discografia do artista

@@ -17,7 +17,6 @@ public class Application {
         // instanciar interface gráfica
         var albums = addAlbunsJson();
         addTracksJson(albums);
-        System.out.println(albums.get(0));
     }
 
     public static ArrayList<Album> addAlbunsJson() {

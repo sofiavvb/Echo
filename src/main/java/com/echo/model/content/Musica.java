@@ -1,6 +1,5 @@
 package com.echo.model.content;
 
-import java.util.ArrayList;
 import java.time.Duration;
 
 public class Musica extends Conteudo {
