@@ -16,7 +16,7 @@ public class Album extends Conteudo {
     }
 
     public Album(String nome, Duration duracao, Genero genero, int ano, Gravadora gravadora, String linkCapa) {
-        super(nome, duracao, new ArrayList<Artista>());
+        super(nome, duracao);
         this.genero = genero;
         this.musicas = new ArrayList<Musica>();
         this.ano = ano;
@@ -41,6 +41,13 @@ public class Album extends Conteudo {
 
     public void addMusica(Musica musica){
         this.musicas.add(musica);
+    }
+    //adiciona o artista no album e
+    //o album a discografia do artista
+    @Override
+    public void addArtistaPrincipal(Artista a){
+        super.addArtistaPrincipal(a);
+        a.addAlbum(this);
     }
 
     public Musica getMusicabyFaixa(int faixa){
@@ -67,8 +74,10 @@ public class Album extends Conteudo {
     public Gravadora getGravadora() {
         return gravadora;
     }
+    //adiciona a gravadora ao album e o album a gravadora
     public void setGravadora(Gravadora gravadora) {
         this.gravadora = gravadora;
+        this.gravadora.addAlbum(this);
     }
     public String getLinkCapa() {
         return linkCapa;

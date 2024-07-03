@@ -38,7 +38,7 @@ public class JSONParser {
             }
             a.setGenero(album.get("genre").asText());
             a.setLinkCapa(album.get("coverLink").asText());
-            a.setArtistaPrincipal(artista);
+            a.addArtistaPrincipal(artista);
             albums.add(a);
         }));
         

@@ -10,12 +10,11 @@ public class Musica extends Conteudo {
 
     public Musica() {}
     public Musica(String nome, Duration duracao, int faixa, Album album){
-        super(nome, duracao, album.getArtistaPrincipal());
+        super(nome, duracao);
         this.faixa = faixa;
         this.artistaPrincipal = new ArrayList<Artista>();
         this.album = album;
     }
-
 
     public int getFaixa() {
         return faixa;
