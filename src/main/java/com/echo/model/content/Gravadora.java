@@ -51,7 +51,7 @@ public class Gravadora {
         return "Gravadora [nome=" + nome + ", artistas=" + artistas + ", albuns=" + albuns + "]";
     }
 
-    public int equals(Gravadora g) {
-        return if(this.nome.equals(g.getNome()));
+    public boolean equals(String g) {
+        return this.nome.equals(g);
     }
 }

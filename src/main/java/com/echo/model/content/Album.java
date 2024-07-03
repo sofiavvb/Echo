@@ -8,26 +8,28 @@ public class Album extends Conteudo {
     private ArrayList<Musica> musicas;
     private int ano;
     private Gravadora gravadora;
+    private String linkCapa;
 
     public Album() {
         super();
         this.musicas = new ArrayList<Musica>();
     }
 
-    public Album(String nome, Duration duracao, Genero genero, int ano, Gravadora gravadora) {
+    public Album(String nome, Duration duracao, Genero genero, int ano, Gravadora gravadora, String linkCapa) {
         super(nome, duracao, new ArrayList<Artista>());
         this.genero = genero;
         this.musicas = new ArrayList<Musica>();
         this.ano = ano;
         this.gravadora = gravadora;
         this.gravadora.addAlbum(this);
+        this.linkCapa = linkCapa;
     }
 
     public Genero getGenero() {
         return genero;
     }
-    public void setGenero(Genero genero) {
-        this.genero = genero;
+    public void setGenero(String genero) {
+        this.genero = Genero.valueOf(genero);
     }
 
     public ArrayList<Musica> getMusicas() {
@@ -67,6 +69,12 @@ public class Album extends Conteudo {
     }
     public void setGravadora(Gravadora gravadora) {
         this.gravadora = gravadora;
+    }
+    public String getLinkCapa() {
+        return linkCapa;
+    }
+    public void setLinkCapa(String linkCapa) {
+        this.linkCapa = linkCapa;
     }
 
     @Override

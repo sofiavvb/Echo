@@ -43,6 +43,10 @@ public class Conteudo{
     public void setArtistaPrincipal(ArrayList<Artista> artistaPrincipal) {
         this.artistaPrincipal = artistaPrincipal;
     }
+    public void setArtistaPrincipal(Artista artistaPrincipal) {
+        this.artistaPrincipal = new ArrayList<Artista>();
+        this.artistaPrincipal.add(artistaPrincipal);
+    }
 
     public void addArtistaPrincipal(Artista a){
         this.artistaPrincipal.add(a);
