@@ -1,7 +1,7 @@
+package com.echo.graphics;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class PaginaUsuario extends JFrame {
 
         // Foto de perfil
          try {
-            BufferedImage originalImage = ImageIO.read(new File("Interface/fotoGato.jpg"));
+            BufferedImage originalImage = ImageIO.read(new File("fotoGato.jpg"));
             JLabel imageLabel = new JLabel(new ImageIcon(getCircularImage(originalImage)));
             gbc.gridy = 1;
             gbc.gridwidth = 1;

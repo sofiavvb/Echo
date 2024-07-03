@@ -1,8 +1,9 @@
+package com.echo.graphics;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import src.main.java.model.platform.Usuario;
+
+import com.echo.model.platform.Usuario;
 
 public class Cadastro extends JFrame {
     public Cadastro() {
