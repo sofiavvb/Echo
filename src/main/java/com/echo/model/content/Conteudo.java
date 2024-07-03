@@ -12,6 +12,14 @@ public class Conteudo{
     private ArrayList<Artista> artistaPrincipal;
     private Duration duracao;
 
+    public Conteudo(){
+        this.nome = "";
+        this.nota = 0;
+        this.reviews = new ArrayList<Review>();
+        this.artistaPrincipal = new ArrayList<Artista>();
+        this.duracao = Duration.ZERO;
+    }
+
     public Conteudo(String nome, Duration duracao, ArrayList<Artista> artista){
         this.nome = nome;
         this.duracao = duracao;

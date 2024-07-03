@@ -50,4 +50,8 @@ public class Gravadora {
     public String toString() {
         return "Gravadora [nome=" + nome + ", artistas=" + artistas + ", albuns=" + albuns + "]";
     }
+
+    public int equals(Gravadora g) {
+        return if(this.nome.equals(g.getNome()));
+    }
 }

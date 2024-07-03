@@ -9,6 +9,11 @@ public class Album extends Conteudo {
     private int ano;
     private Gravadora gravadora;
 
+    public Album() {
+        super();
+        this.musicas = new ArrayList<Musica>();
+    }
+
     public Album(String nome, Duration duracao, Genero genero, int ano, Gravadora gravadora) {
         super(nome, duracao, new ArrayList<Artista>());
         this.genero = genero;
