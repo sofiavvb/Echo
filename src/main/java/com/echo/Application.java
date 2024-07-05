@@ -2,6 +2,7 @@ package com.echo;
 
 import com.echo.model.content.Album;
 import com.echo.model.content.Artista;
+import com.echo.graphics.InterfaceGrafica;
 import com.echo.utils.JSONParser;
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -10,13 +11,16 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+
 import static com.echo.utils.JSONParser.albums;
 
 public class Application {
     public static void main(String[] args) {
-        // instanciar interface gráfica
         var albums = addAlbunsJson();
         addTracksJson(albums);
+        //System.out.println(albums.get(0));
+        InterfaceGrafica interfaceGrafica = new InterfaceGrafica(albums);
+        interfaceGrafica.chamarCadastro();
     }
 
     public static ArrayList<Album> addAlbunsJson() {
@@ -25,7 +29,7 @@ public class Application {
        try {
             var json = new String(Files.readAllBytes(Paths.get("src/main/resources/albums.json")));
             JsonNode node = JSONParser.parse(json);
-            ArrayList<Album> albums = JSONParser.albumFromJson(node, taylorSwift);
+            albums = JSONParser.albumFromJson(node, taylorSwift);
        } catch (IOException e) {
            e.printStackTrace();
        }

@@ -23,7 +23,7 @@ public abstract class Review {
         this.review = "";
     }
 
-    public abstract void criarReview();
+    public abstract void criarReview(int nota, String review);
 
     public Usuario getUsuario() {
         return usuario;

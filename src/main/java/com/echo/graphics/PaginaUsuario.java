@@ -2,12 +2,20 @@ package com.echo.graphics;
 
 import javax.swing.*;
 import com.echo.model.platform.Usuario;
+import com.echo.model.platform.ReviewAlbum;
+import com.echo.model.content.Album;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PaginaUsuario extends JFrame {
     private Usuario usuario;
+    private ArrayList<Album> albums;
 
-    public PaginaUsuario(Usuario usuario) {
+    public PaginaUsuario(Usuario usuario, ArrayList<Album> albums) {
+        this.albums = albums;
         this.usuario = usuario;
         initUI();
     }
@@ -15,7 +23,7 @@ public class PaginaUsuario extends JFrame {
     public void initUI() {
         setTitle("Echo - User Page");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 600);
+        setSize(900, 700);
         getContentPane().setBackground(Color.BLACK);
         setLayout(new BorderLayout());
 
@@ -84,9 +92,14 @@ public class PaginaUsuario extends JFrame {
         painelRedesSociais.setBackground(Color.BLACK);
         painelRedesSociais.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 
+        List<String> caminhos = new ArrayList<>();
+        caminhos.add("src/main/resources/instagram.png");
+        caminhos.add("src/main/resources/xLogo.jpg");
+        caminhos.add("src/main/resources/instagram.png");
+
         // Adicionar ícones de redes sociais
-        for (int i = 1; i <= 3; i++) {
-            ImageIcon icon = new ImageIcon("caminho/para/redeSocial" + i + ".png");
+        for (int i = 0; i < 3; i++) {
+            ImageIcon icon = new ImageIcon(caminhos.get(i));
             JButton botaoRedeSocial = new JButton(icon);
             botaoRedeSocial.setPreferredSize(new Dimension(30, 30));
             painelRedesSociais.add(botaoRedeSocial);
@@ -141,6 +154,18 @@ public class PaginaUsuario extends JFrame {
         return painelMenu;
     }
 
+    private Album procurarAlbum(ArrayList<Album> albums, String nome) throws InvalidAlbumName {
+        for (Album album: albums) {
+            if((album.getNome() == nome)) {
+                return album;
+
+            }
+        } 
+
+        throw new InvalidAlbumName();
+
+    }
+
     private JPanel createMenuHorizontalInferior() {
         JPanel painelMenu = new JPanel();
         painelMenu.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -152,14 +177,46 @@ public class PaginaUsuario extends JFrame {
         JButton botaoMenu3 = new JButton("Likes");
         JButton botaoMenu4 = new JButton("Lists");
         JButton botaoMenu5 = new JButton("Library");
+        JButton botaoMenu6 = new JButton("MAKE A REVIEW");
+        botaoMenu6.setBackground(new Color(125, 0, 125));
+        botaoMenu6.setForeground(Color.WHITE);
         painelMenu.add(botaoMenu1);
         painelMenu.add(botaoMenu2);
         painelMenu.add(botaoMenu3);
         painelMenu.add(botaoMenu4);
         painelMenu.add(botaoMenu5);
+        painelMenu.add(botaoMenu6);
+
+        botaoMenu6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nome = JOptionPane.showInputDialog(null, "Informe o nome do album que deseja avaliar:", "Entrada de Nome de Album", JOptionPane.QUESTION_MESSAGE);
+                if (nome != null && !nome.trim().isEmpty()) {
+                    // Exibir o nome digitado em uma mensagem
+                    JOptionPane.showMessageDialog(null, "Nome informado: " + nome);
+                    try {
+                        Album album = procurarAlbum(albums, nome);
+
+                    } catch(InvalidAlbumName ex) {
+                        // fazer algo
+                    }
+
+                    PaginaReview paginaReview = new PaginaReview(usuario, album);
+                    paginaReview.initComponents();
+                    ReviewAlbum reviewAlbum = paginaReview.criarReviewAlbum();
+                    usuario.publicarReviewAlbum(reviewAlbum);
+                   
+                } else {
+                        // Exibir mensagem caso o nome não seja informado
+                        JOptionPane.showMessageDialog(null, "Nenhum nome foi informado.");
+                 }
+
+            }
+        }
 
         return painelMenu;
     }
+
 
     private JPanel createPainelImagemTitulo() {
         JPanel painelImagemTitulo = new JPanel();

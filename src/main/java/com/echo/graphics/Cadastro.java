@@ -4,20 +4,21 @@ import javax.swing.*;
 import java.awt.*;
 
 import com.echo.model.platform.Usuario;
+import com.echo.model.content.Album;
+import java.util.ArrayList;
 
 public class Cadastro extends JFrame {
-    public Cadastro() {
-        // Configuração da janela
+    private ArrayList<Album> albums;
+    public Cadastro(ArrayList<Album> albums) {
+        this.albums = albums;
+    }
+
+    public void initComponents() {
         setTitle("Echo - Cadastro");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        initComponents();
-
-    }
-
-    public void initComponents() {
         JPanel panel = new JPanel(new GridBagLayout());
 
         // Adição de componentes
@@ -102,24 +103,16 @@ public class Cadastro extends JFrame {
             setVisible(false);
 
             Usuario usuario = new Usuario(nomeUsario, senha, cpf, email, foto);
-            PaginaUsuario paginaUsuario = new PaginaUsuario(usuario);
+            PaginaUsuario paginaUsuario = new PaginaUsuario(usuario, albums);
             paginaUsuario.initUI();
 
         });
 
         add(panel);
+        setVisible(true);
 
     }
 
-    public static void main(String[] args) {
-        // Criação e exibição da janela
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Cadastro().setVisible(true);
-            }
-        });
-    }
 }
 
 
