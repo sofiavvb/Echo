@@ -156,7 +156,7 @@ public class PaginaUsuario extends JFrame {
 
     private Album procurarAlbum(ArrayList<Album> albums, String nome) throws InvalidAlbumName {
         for (Album album: albums) {
-            if((album.getNome() == nome)) {
+            if((album.getNome().equals(nome))) {
                 return album;
 
             }
@@ -178,7 +178,7 @@ public class PaginaUsuario extends JFrame {
         JButton botaoMenu4 = new JButton("Lists");
         JButton botaoMenu5 = new JButton("Library");
         JButton botaoMenu6 = new JButton("MAKE A REVIEW");
-        botaoMenu6.setBackground(new Color(125, 0, 125));
+        botaoMenu6.setBackground(new Color(200, 50, 250));
         botaoMenu6.setForeground(Color.WHITE);
         painelMenu.add(botaoMenu1);
         painelMenu.add(botaoMenu2);
@@ -190,29 +190,28 @@ public class PaginaUsuario extends JFrame {
         botaoMenu6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Album album = null;
                 String nome = JOptionPane.showInputDialog(null, "Informe o nome do album que deseja avaliar:", "Entrada de Nome de Album", JOptionPane.QUESTION_MESSAGE);
                 if (nome != null && !nome.trim().isEmpty()) {
                     // Exibir o nome digitado em uma mensagem
                     JOptionPane.showMessageDialog(null, "Nome informado: " + nome);
                     try {
-                        Album album = procurarAlbum(albums, nome);
+                        album = procurarAlbum(albums, nome);
+                        PaginaReview paginaReview = new PaginaReview(usuario, album);
+                        ReviewAlbum reviewAlbum = paginaReview.criarReviewAlbum();
+                        usuario.publicarReviewAlbum(reviewAlbum);
 
                     } catch(InvalidAlbumName ex) {
-                        // fazer algo
+                        JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
-
-                    PaginaReview paginaReview = new PaginaReview(usuario, album);
-                    paginaReview.initComponents();
-                    ReviewAlbum reviewAlbum = paginaReview.criarReviewAlbum();
-                    usuario.publicarReviewAlbum(reviewAlbum);
                    
                 } else {
-                        // Exibir mensagem caso o nome não seja informado
-                        JOptionPane.showMessageDialog(null, "Nenhum nome foi informado.");
-                 }
+                    // Exibir mensagem caso o nome não seja informado
+                    JOptionPane.showMessageDialog(null, "Nenhum nome foi informado.");
+                }
 
             }
-        }
+        });
 
         return painelMenu;
     }
@@ -224,6 +223,8 @@ public class PaginaUsuario extends JFrame {
         painelImagemTitulo.setBackground(Color.BLACK);
 
         JLabel labelImagem = createImagemPerfil();
+        labelImagem.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         JLabel labelTitulo = new JLabel(usuario.getNome());
         labelTitulo.setForeground(Color.WHITE);
 

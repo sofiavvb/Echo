@@ -21,19 +21,29 @@ public class Cadastro extends JFrame {
 
         JPanel panel = new JPanel(new GridBagLayout());
 
+        // Cor
+        panel.setBackground(Color.BLACK);
+        panel.setForeground(Color.WHITE);
+
         // Adição de componentes
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.gridx = 0;
+        gbc.gridx = 1;
         gbc.gridy = 0;
 
+        // Logo
+        panel.add(createPainelLogo());
+
         // Label 1
-        JLabel label1 = new JLabel("Olá, Echo user!!");
+        JLabel label1 = new JLabel("Olá, Bem vindo ao Echo! Por favor, adicione as informações");
+        label1.setForeground(Color.WHITE);
         panel.add(label1, gbc);
 
         // Nome de usuário
         JLabel label2 = new JLabel("Nome de usuário:"); 
+        label2.setForeground(Color.WHITE);
+        gbc.gridx = 0;
         gbc.gridy = 1;
         panel.add(label2, gbc);
 
@@ -44,6 +54,7 @@ public class Cadastro extends JFrame {
 
         // CPF
         JLabel label3 = new JLabel("CPF:");
+        label3.setForeground(Color.WHITE);
         gbc.gridx = 0;
         gbc.gridy = 2;
         panel.add(label3, gbc);
@@ -55,6 +66,7 @@ public class Cadastro extends JFrame {
 
         // Email
         JLabel label4 = new JLabel("Email:"); 
+        label4.setForeground(Color.WHITE);
         gbc.gridx = 0;
         gbc.gridy = 3;
         panel.add(label4, gbc);
@@ -66,7 +78,8 @@ public class Cadastro extends JFrame {
         
         
         // Senha
-        JLabel label5 = new JLabel("Senha:"); 
+        JLabel label5 = new JLabel("Senha:");
+        label5.setForeground(Color.WHITE); 
         gbc.gridx = 0;
         gbc.gridy = 4;
         panel.add(label5, gbc);
@@ -78,6 +91,7 @@ public class Cadastro extends JFrame {
 
         // Imagem
         JLabel label6 = new JLabel("URL da foto:"); 
+        label6.setForeground(Color.WHITE);
         gbc.gridx = 0;
         gbc.gridy = 5;
         panel.add(label6, gbc);
@@ -89,6 +103,8 @@ public class Cadastro extends JFrame {
 
 
         JButton button = new JButton("Cadastrar-me");
+        button.setBackground(new Color(200, 50, 250));
+        button.setForeground(Color.BLACK);
         gbc.gridy = 6;
         panel.add(button, gbc);
 
@@ -111,6 +127,22 @@ public class Cadastro extends JFrame {
         add(panel);
         setVisible(true);
 
+    }
+
+    private JPanel createPainelLogo() {
+        JPanel painelLogo = new JPanel();
+        painelLogo.setBackground(Color.BLACK);
+
+        JLabel logo = createLogo();
+        painelLogo.add(logo);
+
+        return painelLogo;
+    }
+
+    private JLabel createLogo() {
+        ImageIcon imageIcon = new ImageIcon("src/main/resources/logoEcho.jpg");
+        Image image = imageIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        return new JLabel(new ImageIcon(image));
     }
 
 }
