@@ -238,7 +238,7 @@ public class PaginaUsuario extends JFrame {
 
         return painelImagemTitulo;
     }
-
+    
     private JLabel createImagemPerfil() {
         ImageIcon imageIcon = new ImageIcon("src/main/resources/fotoGato.jpg");
         Image image = imageIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
