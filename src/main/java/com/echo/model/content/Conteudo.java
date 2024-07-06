@@ -12,10 +12,18 @@ public class Conteudo{
     private ArrayList<Artista> artistaPrincipal;
     private Duration duracao;
 
-    public Conteudo(String nome, Duration duracao, ArrayList<Artista> artista){
+    public Conteudo(){
+        this.nome = "";
+        this.nota = 0;
+        this.reviews = new ArrayList<Review>();
+        this.artistaPrincipal = new ArrayList<Artista>();
+        this.duracao = Duration.ZERO;
+    }
+
+    public Conteudo(String nome, Duration duracao){
         this.nome = nome;
         this.duracao = duracao;
-        this.artistaPrincipal = artista;
+        this.artistaPrincipal = new ArrayList<Artista>();
         this.nota = 0;
         this.reviews = new ArrayList<Review>();
     }
@@ -29,15 +37,20 @@ public class Conteudo{
     }
 
     public ArrayList<Artista> getArtistaPrincipal() {
-        return artistaPrincipal;
-    }
-
-    public void setArtistaPrincipal(ArrayList<Artista> artistaPrincipal) {
-        this.artistaPrincipal = artistaPrincipal;
+        return this.artistaPrincipal;
     }
 
     public void addArtistaPrincipal(Artista a){
         this.artistaPrincipal.add(a);
+    }
+
+    public boolean isArtistaPrincipal(String nome) {
+        for (Artista a : this.artistaPrincipal) {
+            if (a.getNome().equals(nome)) {
+                return true;
+            }
+        };
+        return false;
     }
 
     public float getNota() {

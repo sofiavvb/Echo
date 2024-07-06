@@ -8,21 +8,28 @@ public class Album extends Conteudo {
     private ArrayList<Musica> musicas;
     private int ano;
     private Gravadora gravadora;
+    private String linkCapa;
 
-    public Album(String nome, Duration duracao, Genero genero, int ano, Gravadora gravadora) {
-        super(nome, duracao, new ArrayList<Artista>());
+    public Album() {
+        super();
+        this.musicas = new ArrayList<Musica>();
+    }
+
+    public Album(String nome, Duration duracao, Genero genero, int ano, Gravadora gravadora, String linkCapa) {
+        super(nome, duracao);
         this.genero = genero;
         this.musicas = new ArrayList<Musica>();
         this.ano = ano;
         this.gravadora = gravadora;
         this.gravadora.addAlbum(this);
+        this.linkCapa = linkCapa;
     }
 
     public Genero getGenero() {
         return genero;
     }
-    public void setGenero(Genero genero) {
-        this.genero = genero;
+    public void setGenero(String genero) {
+        this.genero = Genero.valueOf(genero);
     }
 
     public ArrayList<Musica> getMusicas() {
@@ -34,6 +41,14 @@ public class Album extends Conteudo {
 
     public void addMusica(Musica musica){
         this.musicas.add(musica);
+        this.setDuracao(this.getDuracao().plus(musica.getDuracao()));
+    }
+    //adiciona o artista no album e
+    //o album a discografia do artista
+    @Override
+    public void addArtistaPrincipal(Artista a){
+        super.addArtistaPrincipal(a);
+        a.addAlbum(this);
     }
 
     public Musica getMusicabyFaixa(int faixa){
@@ -60,14 +75,18 @@ public class Album extends Conteudo {
     public Gravadora getGravadora() {
         return gravadora;
     }
+    //adiciona a gravadora ao album e o album a gravadora
     public void setGravadora(Gravadora gravadora) {
         this.gravadora = gravadora;
+        this.gravadora.addArtista(this.getArtistaPrincipal());
+        this.gravadora.addAlbum(this);
+    }
+    public String getLinkCapa() {
+        return linkCapa;
+    }
+    public void setLinkCapa(String linkCapa) {
+        this.linkCapa = linkCapa;
     }
 
-    @Override
-    public String toString() {
-        return "Album [genero=" + genero + ", artistaPrincipal=" + super.getArtistaPrincipal() + ", musicas=" + musicas + ", ano="
-                + ano + ", gravadora=" + gravadora + "]";
-    }
 
 }

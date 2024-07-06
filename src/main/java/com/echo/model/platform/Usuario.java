@@ -1,8 +1,6 @@
 package com.echo.model.platform;
 
-import com.echo.model.content.Album;
 import com.echo.model.content.Conteudo;
-import com.echo.model.content.Musica;
 
 import java.util.ArrayList;
 
@@ -37,16 +35,12 @@ public class Usuario {
         this.listas = new ArrayList<Lista>();
     }
 
-    public void publicarReviewMusica(Musica m) {
-        Review review = new ReviewMusica(this, m);
-        review.criarReview();
-        this.reviews.add(review);
+    public void publicarReviewMusica(ReviewMusica reviewMusica) {
+        this.reviews.add(reviewMusica);
     }
     
-    public void publicarReviewAlbum(Album a) {
-        Review review = new ReviewAlbum(this, a);
-        review.criarReview();
-        this.reviews.add(review);
+    public void publicarReviewAlbum(ReviewAlbum reviewAlbum) {
+        this.reviews.add(reviewAlbum);
     }
 
     public void curtirReview(Review review) {
