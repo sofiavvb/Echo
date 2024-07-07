@@ -1,12 +1,14 @@
 package com.echo.graphics;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import com.echo.model.platform.Usuario;
-import com.echo.model.platform.ReviewAlbum;
 import com.echo.model.content.Album;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -197,9 +199,9 @@ public class PaginaUsuario extends JFrame {
                     JOptionPane.showMessageDialog(null, "Nome informado: " + nome);
                     try {
                         album = procurarAlbum(albums, nome);
-                        PaginaReview paginaReview = new PaginaReview(usuario, album);
-                        ReviewAlbum reviewAlbum = paginaReview.criarReviewAlbum();
-                        usuario.publicarReviewAlbum(reviewAlbum);
+                        PaginaReview paginaReview = new PaginaReview(usuario, album, albums);
+                        paginaReview.setVisible(true);
+                        dispose();
 
                     } catch(InvalidAlbumName ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -241,10 +243,23 @@ public class PaginaUsuario extends JFrame {
     }
     
     private JLabel createImagemPerfil() {
-        ImageIcon imageIcon = new ImageIcon("src/main/resources/fotoGato.jpg");
-        Image image = imageIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        return new JLabel(new ImageIcon(image));
+        try {
+            URL url = new URL(usuario.getFoto());
+            Image image = ImageIO.read(url);
+            
+            // Verifique se a imagem foi carregada corretamente
+            if (image == null) {
+                throw new IOException("Failed to load image.");
+            }
+            
+            Image scaledImage = image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+            return new JLabel(new ImageIcon(scaledImage));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new JLabel("Image not available");
+        }
     }
+    
 
     private JLabel createLogo() {
         ImageIcon imageIcon = new ImageIcon("src/main/resources/logoEcho.jpg");
@@ -273,17 +288,35 @@ public class PaginaUsuario extends JFrame {
         return painelBiblioteca;
     }
 
+    private ImageIcon createImage(Album album) {
+        try {
+            URL url = new URL(album.getLinkCapa());
+            Image image = ImageIO.read(url);
+            Image scaledImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+
+
+            return new ImageIcon(scaledImage);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ImageIcon("Image not avalible");
+        }
+
+    }
+
     private JPanel createPainelImagens() {
         JPanel painelImagens = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         painelImagens.setBackground(Color.BLACK);
 
-        for (int i = 1; i <= 3; i++) {
-            ImageIcon icon = new ImageIcon("caminho/para/imagem" + i + ".jpg");
+        int tamanhoBiblioteca = usuario.getBiblioteca().size();
+
+        for (int i = 0; i < tamanhoBiblioteca; i++) {
+            Album album = (Album)usuario.getBiblioteca().get(i);
+            ImageIcon icon = createImage(album);
             JButton botaoImagem = new JButton(icon);
             botaoImagem.setPreferredSize(new Dimension(100, 100));
             painelImagens.add(botaoImagem);
 
-            int index = i; // Necessário para a lambda
+            int index = i;
             botaoImagem.addActionListener(e -> JOptionPane.showMessageDialog(null, "Imagem " + index + " clicada!"));
         }
 

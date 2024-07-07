@@ -1,10 +1,15 @@
 package com.echo.graphics;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.net.URL;
+
 import com.echo.model.platform.Usuario;
 import com.echo.model.platform.ReviewAlbum;
 import com.echo.model.content.Album;
+import java.util.ArrayList;
 
 public class PaginaReview extends JFrame {
     private Usuario usuario;
@@ -12,14 +17,16 @@ public class PaginaReview extends JFrame {
     private int nota;
     private int coesao;
     private String reviewText;
+    private ArrayList<Album> albums;
 
     private JTextField textField1;
     private JTextField textField2;
     private JTextArea textField3;
 
-    public PaginaReview(Usuario usuario, Album album) {
+    public PaginaReview(Usuario usuario, Album album, ArrayList<Album> albums) {
         this.usuario = usuario;
         this.album = album;
+        this.albums = albums;
         initComponents();
         setVisible(true);
     }
@@ -109,9 +116,18 @@ public class PaginaReview extends JFrame {
     }
 
     private JLabel createImage() {
-        ImageIcon imageIcon = new ImageIcon("src/main/resources/fotoGato.jpg");
-        Image image = imageIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-        return new JLabel(new ImageIcon(image));
+        try {
+            URL url = new URL(album.getLinkCapa());
+            Image image = ImageIO.read(url);
+            Image scaledImage = image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+
+
+            return new JLabel(new ImageIcon(scaledImage));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new JLabel("Image not avalible");
+        }
+
     }
 
     private JPanel createTextPanel() {
@@ -174,5 +190,10 @@ public class PaginaReview extends JFrame {
         nota = Integer.parseInt(textField1.getText());
         coesao = Integer.parseInt(textField2.getText());
         reviewText = textField3.getText();
+        ReviewAlbum reviewAlbum = criarReviewAlbum();
+        usuario.publicarReviewAlbum(reviewAlbum);
+        setVisible(false);
+        PaginaUsuario nova = new PaginaUsuario(usuario, albums);
+        nova.setVisible(true);
     }
 }
