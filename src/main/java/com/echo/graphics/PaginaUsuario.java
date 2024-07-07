@@ -1,12 +1,14 @@
 package com.echo.graphics;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import com.echo.model.platform.Usuario;
-import com.echo.model.platform.ReviewAlbum;
 import com.echo.model.content.Album;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -156,7 +158,7 @@ public class PaginaUsuario extends JFrame {
 
     private Album procurarAlbum(ArrayList<Album> albums, String nome) throws InvalidAlbumName {
         for (Album album: albums) {
-            if((album.getNome() == nome)) {
+            if((album.getNome().equals(nome))) {
                 return album;
 
             }
@@ -178,7 +180,7 @@ public class PaginaUsuario extends JFrame {
         JButton botaoMenu4 = new JButton("Lists");
         JButton botaoMenu5 = new JButton("Library");
         JButton botaoMenu6 = new JButton("MAKE A REVIEW");
-        botaoMenu6.setBackground(new Color(125, 0, 125));
+        botaoMenu6.setBackground(new Color(200, 50, 250));
         botaoMenu6.setForeground(Color.WHITE);
         painelMenu.add(botaoMenu1);
         painelMenu.add(botaoMenu2);
@@ -190,29 +192,28 @@ public class PaginaUsuario extends JFrame {
         botaoMenu6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Album album = null;
                 String nome = JOptionPane.showInputDialog(null, "Informe o nome do album que deseja avaliar:", "Entrada de Nome de Album", JOptionPane.QUESTION_MESSAGE);
                 if (nome != null && !nome.trim().isEmpty()) {
                     // Exibir o nome digitado em uma mensagem
                     JOptionPane.showMessageDialog(null, "Nome informado: " + nome);
                     try {
-                        Album album = procurarAlbum(albums, nome);
+                        album = procurarAlbum(albums, nome);
+                        PaginaReview paginaReview = new PaginaReview(usuario, album, albums);
+                        paginaReview.setVisible(true);
+                        dispose();
 
                     } catch(InvalidAlbumName ex) {
-                        // fazer algo
+                        JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
-
-                    PaginaReview paginaReview = new PaginaReview(usuario, album);
-                    paginaReview.initComponents();
-                    ReviewAlbum reviewAlbum = paginaReview.criarReviewAlbum();
-                    usuario.publicarReviewAlbum(reviewAlbum);
                    
                 } else {
-                        // Exibir mensagem caso o nome não seja informado
-                        JOptionPane.showMessageDialog(null, "Nenhum nome foi informado.");
-                 }
+                    // Exibir mensagem caso o nome não seja informado
+                    JOptionPane.showMessageDialog(null, "Nenhum nome foi informado.");
+                }
 
             }
-        }
+        });
 
         return painelMenu;
     }
@@ -224,6 +225,8 @@ public class PaginaUsuario extends JFrame {
         painelImagemTitulo.setBackground(Color.BLACK);
 
         JLabel labelImagem = createImagemPerfil();
+        labelImagem.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         JLabel labelTitulo = new JLabel(usuario.getNome());
         labelTitulo.setForeground(Color.WHITE);
 
@@ -240,10 +243,23 @@ public class PaginaUsuario extends JFrame {
     }
     
     private JLabel createImagemPerfil() {
-        ImageIcon imageIcon = new ImageIcon("src/main/resources/fotoGato.jpg");
-        Image image = imageIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        return new JLabel(new ImageIcon(image));
+        try {
+            URL url = new URL(usuario.getFoto());
+            Image image = ImageIO.read(url);
+            
+            // Verifique se a imagem foi carregada corretamente
+            if (image == null) {
+                throw new IOException("Failed to load image.");
+            }
+            
+            Image scaledImage = image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+            return new JLabel(new ImageIcon(scaledImage));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new JLabel("Image not available");
+        }
     }
+    
 
     private JLabel createLogo() {
         ImageIcon imageIcon = new ImageIcon("src/main/resources/logoEcho.jpg");
@@ -272,17 +288,35 @@ public class PaginaUsuario extends JFrame {
         return painelBiblioteca;
     }
 
+    private ImageIcon createImage(Album album) {
+        try {
+            URL url = new URL(album.getLinkCapa());
+            Image image = ImageIO.read(url);
+            Image scaledImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+
+
+            return new ImageIcon(scaledImage);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ImageIcon("Image not avalible");
+        }
+
+    }
+
     private JPanel createPainelImagens() {
         JPanel painelImagens = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         painelImagens.setBackground(Color.BLACK);
 
-        for (int i = 1; i <= 3; i++) {
-            ImageIcon icon = new ImageIcon("caminho/para/imagem" + i + ".jpg");
+        int tamanhoBiblioteca = usuario.getBiblioteca().size();
+
+        for (int i = 0; i < tamanhoBiblioteca; i++) {
+            Album album = (Album)usuario.getBiblioteca().get(i);
+            ImageIcon icon = createImage(album);
             JButton botaoImagem = new JButton(icon);
             botaoImagem.setPreferredSize(new Dimension(100, 100));
             painelImagens.add(botaoImagem);
 
-            int index = i; // Necessário para a lambda
+            int index = i;
             botaoImagem.addActionListener(e -> JOptionPane.showMessageDialog(null, "Imagem " + index + " clicada!"));
         }
 
